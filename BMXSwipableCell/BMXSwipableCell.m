@@ -111,10 +111,14 @@ static const CGFloat kDefaultUITableViewDeleteControlWidth = 47;
     // search for the parent table view
     //
     UIView *view = self.superview;
-    while (! [view isKindOfClass: [UITableView class]]) {
+    while (view && ! [view isKindOfClass: [UITableView class]]) {
         view = view.superview;
     }
     
+	if (!view) {
+		return;
+	}
+	
     NSAssert([view isKindOfClass: [UITableView class]], @"UITableView not found");
     
     _tableView = (UITableView*)view;
